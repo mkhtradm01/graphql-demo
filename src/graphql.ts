@@ -7,18 +7,18 @@
 
 /* tslint:disable */
 /* eslint-disable */
-export interface CreateUserInput {
+export class CreateUserInput {
     email: string;
     name: string;
     setting: JSON;
 }
 
-export interface UpdateUserInput {
+export class UpdateUserInput {
     id: string;
     name: string;
 }
 
-export interface User {
+export class User {
     id: string;
     email: string;
     name: string;
@@ -27,15 +27,18 @@ export interface User {
     updatedAt?: Nullable<Date>;
 }
 
-export interface IQuery {
-    users(): Nullable<Nullable<User>[]> | Promise<Nullable<Nullable<User>[]>>;
-    user(id: string): Nullable<User> | Promise<Nullable<User>>;
+export abstract class IQuery {
+    abstract users(): Nullable<Nullable<User>[]> | Promise<Nullable<Nullable<User>[]>>;
+
+    abstract user(id: string): Nullable<User> | Promise<Nullable<User>>;
 }
 
-export interface IMutation {
-    createUser(createUserData: CreateUserInput): Nullable<User> | Promise<Nullable<User>>;
-    updateUser(updateUserData?: Nullable<UpdateUserInput>): Nullable<User> | Promise<Nullable<User>>;
-    deleteUser(id: string): Nullable<User> | Promise<Nullable<User>>;
+export abstract class IMutation {
+    abstract deleteUser(id: string): Nullable<User> | Promise<Nullable<User>>;
+
+    abstract updateUser(updateUserData?: Nullable<UpdateUserInput>): Nullable<User> | Promise<Nullable<User>>;
+
+    abstract createUser(createUserData: CreateUserInput): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export type JSON = any;

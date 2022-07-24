@@ -16,16 +16,11 @@ type Query {
     user(id: ID!): User
 }
 
-type Mutation {
-    createUser(createUserData: CreateUserInput!): User
-}
-
-type Mutation{
-    updateUser(updateUserData: UpdateUserInput): User
-}
 
 type Mutation{
     deleteUser(id: String!): User
+        updateUser(updateUserData: UpdateUserInput): User
+         createUser(createUserData: CreateUserInput!): User
 }
 
 input CreateUserInput {
