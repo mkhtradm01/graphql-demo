@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserInput, User, UpdateUserInput } from 'src/graphql';
 import { v4 as uuidv4 } from 'uuid';
+import { IUserService } from './interfaces/i.user.service';
 
 @Injectable()
-export class UserService {
+export class UserService implements IUserService {
   private users: User[] = [];
 
   createUser(createUserInput: CreateUserInput): User {

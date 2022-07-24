@@ -4,6 +4,7 @@ import { UserResolver } from './user.resolver';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
+import { USER_SERVICE } from './interfaces/i.user.service';
 
 @Module({
   imports: [
@@ -16,6 +17,12 @@ import { join } from 'path';
       },
     }),
   ],
-  providers: [UserService, UserResolver],
+  providers: [
+    {
+      provide: USER_SERVICE,
+      useClass: UserService,
+    },
+    UserResolver,
+  ],
 })
 export class UserModule {}
